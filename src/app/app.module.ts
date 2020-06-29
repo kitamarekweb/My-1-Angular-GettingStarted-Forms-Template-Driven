@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customers/customer.component';
+import { CustomerReactiveComponent } from './customersReactive/customer-reactive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerComponent
+    CustomerComponent,
+    CustomerReactiveComponent
   ],
   imports: [
     BrowserModule,
