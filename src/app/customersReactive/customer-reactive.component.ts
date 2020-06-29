@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl} from "@angular/forms";
 
-import { Customer } from './customer';
+import {Customer} from './customer';
 
 @Component({
   selector: 'app-customer-reactive',
@@ -9,15 +9,22 @@ import { Customer } from './customer';
   styleUrls: ['./customer-reactive.component.css']
 })
 export class CustomerReactiveComponent implements OnInit {
+  customerForm: FormGroup;
   customer = new Customer();
 
   constructor() { }
 
   ngOnInit() {
+    this.customerForm = new FormGroup({
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      email: new FormControl(),
+      sendCatalog: new FormControl(true)
+    })
   }
 
-  save(customerForm: NgForm) {
-    console.log(customerForm.form);
-    console.log('Saved: ' + JSON.stringify(customerForm.value));
+  save() {
+    console.log(this.customerForm);
+    console.log('Saved: ' + JSON.stringify(this.customerForm.value));
   }
 }
