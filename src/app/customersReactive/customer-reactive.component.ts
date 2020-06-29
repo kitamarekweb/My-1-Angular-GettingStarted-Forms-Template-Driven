@@ -11,6 +11,7 @@ import {Customer} from './customer';
 export class CustomerReactiveComponent implements OnInit {
   customerForm: FormGroup;
   customer = new Customer();
+  email = new FormControl();
 
   constructor() { }
 
@@ -18,7 +19,7 @@ export class CustomerReactiveComponent implements OnInit {
     this.customerForm = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),
-      email: new FormControl(),
+      email: this.email,
       sendCatalog: new FormControl(true)
     })
   }
