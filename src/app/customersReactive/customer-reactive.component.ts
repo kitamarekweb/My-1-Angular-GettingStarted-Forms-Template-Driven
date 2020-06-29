@@ -28,4 +28,18 @@ export class CustomerReactiveComponent implements OnInit {
     console.log(this.customerForm);
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
   }
+
+  populateTestDataSetValue(): void {
+    this.customerForm.setValue({
+      firstName: 'Jack',
+      lastName: 'Harkness',
+      email: 'jack@torchwood.com',
+      sendCatalog: false
+    })
+  }
+  populateTestDataPatchValue(): void {
+    this.customerForm.patchValue({
+      lastName: 'Smith'
+    })
+  }
 }
