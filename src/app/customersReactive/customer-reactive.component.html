@@ -16,8 +16,6 @@
                  id="firstNameId"
                  type="text"
                  placeholder="First Name (required)"
-                 required
-                 minlength="3"
                  formControlName="firstName"
                  [ngClass]="{'is-invalid': (customerForm.get('firstName').touched || customerForm.get('firstName').dirty) && !customerForm.get('firstName').valid }"/>
           <span class="invalid-feedback">
@@ -39,8 +37,6 @@
                  id="lastNameId"
                  type="text"
                  placeholder="Last Name (required)"
-                 required
-                 maxlength="50"
                  formControlName="lastName"
                  [ngClass]="{'is-invalid': (customerForm.controls.lastName.touched || customerForm.controls.lastName.dirty) && !customerForm.controls.lastName.valid }"/>
           <span class="invalid-feedback">
@@ -62,15 +58,13 @@
                  id="emailId"
                  type="email"
                  placeholder="Email (required)"
-                 required
-                 email
                  formControlName="email"
-                 [ngClass]="{'is-invalid': (email.touched || email.dirty) && !email.valid }"/>
+                 [ngClass]="{'is-invalid': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }"/>
           <span class="invalid-feedback">
-            <span *ngIf="email.errors?.required">
+            <span *ngIf="customerForm.get('email').errors?.required">
               Please enter your email address.
             </span>
-            <span *ngIf="email.errors?.email">
+            <span *ngIf="customerForm.get('email').errors?.email">
               Please enter a valid email address.
             </span>
           </span>
