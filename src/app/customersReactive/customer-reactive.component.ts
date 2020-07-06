@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 
 import {Customer} from './customer';
-import {stringify} from "querystring";
 
 function ratingRange(min: number, max:number): ValidatorFn {
   return (c: AbstractControl): { [key: string]: boolean } | null => {
@@ -29,7 +28,10 @@ export class CustomerReactiveComponent implements OnInit {
     this.customerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: [{value: '', disabled: false}, [Validators.required, Validators.maxLength(50)]],
-      email: ['',[Validators.required, Validators.email]],
+      emailGroup: this.fb.group({
+        email: ['',[Validators.required, Validators.email]],
+        confirmEmail: ['',[Validators.required]],
+      }),
       phone: '',
       notification: 'email',
       rating: [null, ratingRange(1,3)],
