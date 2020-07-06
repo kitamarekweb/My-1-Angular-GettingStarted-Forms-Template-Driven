@@ -1,7 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
+import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl} from "@angular/forms";
 
 import {Customer} from './customer';
+import {stringify} from "querystring";
+
+function ratingRange(c: AbstractControl): { [key: string]: boolean } | null {
+  if (c.value !== null && (isNaN(c.value) || c.value < 1 || c.value > 5)) {
+    return { 'range': true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-customer-reactive',
@@ -21,6 +29,7 @@ export class CustomerReactiveComponent implements OnInit {
       email: ['',[Validators.required, Validators.email]],
       phone: '',
       notification: 'email',
+      rating: [null, ratingRange],
       sendCatalog: [{value: true, disabled: true}],
     })
   }
